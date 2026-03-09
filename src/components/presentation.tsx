@@ -5,20 +5,15 @@ import Image from 'next/image';
 import React from 'react';
 
 export function Presentation() {
-  // Personal information
   const profile = {
-    name: 'Raphael Giraud',
-    age: '21 years old',
-    location: 'Paris, France',
-    // Add a newline character after the emoji
+    name: 'Sunil Bhadu',
+    experience: '3+ years experience',
+    location: 'Surat, India',
     description:
-      "Hey 👋\nI'm Sunil. I'm a developer specializing in AI at 42 Paris. I'm working at LightOn AI in Paris. I'm passionate about AI, tech, Entrepreneurship and SaaS tech.",
-    src: '/profil-raph.png',
-    fallbackSrc:
-      'https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3',
+      "Hey 👋\nI'm Sunil, a Full Stack Developer from Surat, India. I specialize in the MERN stack and have built healthcare SaaS platforms, multi-tenant architectures, and payment systems.\n\nI love taking complete ownership of projects — from client meetings to deployment. Currently at Knovator Technologies building telehealth platforms and open-source tools.",
+    src: '/sunil.jpg',
   };
 
-  // Animation variants for text elements
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -28,17 +23,12 @@ export function Presentation() {
     },
   };
 
-  // Animation for the entire paragraph rather than word-by-word
   const paragraphAnimation = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-        delay: 0.2,
-      },
+      transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 },
     },
   };
 
@@ -60,11 +50,6 @@ export function Presentation() {
                 width={500}
                 height={500}
                 className="h-full w-full object-cover object-center"
-                onError={(e) => {
-                  // Fallback to placeholder if image fails to load
-                  const target = e.target as HTMLImageElement;
-                  target.src = profile.fallbackSrc;
-                }}
               />
             </motion.div>
           </div>
@@ -72,16 +57,12 @@ export function Presentation() {
 
         {/* Text content section */}
         <div className="flex flex-col space-y">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={textVariants}
-          >
+          <motion.div initial="hidden" animate="visible" variants={textVariants}>
             <h1 className="from-foreground to-muted-foreground bg-gradient-to-r bg-clip-text text-xl font-semibold text-transparent md:text-3xl">
               {profile.name}
             </h1>
             <div className="mt-1 flex flex-col gap-1 md:flex-row md:items-center md:gap-4">
-              <p className="text-muted-foreground">{profile.age}</p>
+              <p className="text-muted-foreground">{profile.experience}</p>
               <div className="bg-border hidden h-1.5 w-1.5 rounded-full md:block" />
               <p className="text-muted-foreground">{profile.location}</p>
             </div>
@@ -96,23 +77,21 @@ export function Presentation() {
             {profile.description}
           </motion.p>
 
-          {/* Tags/Keywords */}
+          {/* Tags */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
             className="mt-4 flex flex-wrap gap-2"
           >
-            {['AI', 'Developer', '42 Paris', 'Sport', 'SaaS Builder'].map(
-              (tag) => (
-                <span
-                  key={tag}
-                  className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm"
-                >
-                  {tag}
-                </span>
-              )
-            )}
+            {['Full Stack', 'MERN', 'NestJS', 'Healthcare SaaS', 'Node.js'].map((tag) => (
+              <span
+                key={tag}
+                className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm"
+              >
+                {tag}
+              </span>
+            ))}
           </motion.div>
         </div>
       </div>

@@ -1,35 +1,29 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 
 export function Contact() {
-  // Contact information
   const contactInfo = {
-    name: 'Raphael Giraud',
-    email: 'raphaelgiraud12@gmail.com',
-    handle: '@Raphael.Giraud',
+    name: 'Sunil Bhadu',
+    email: 'sunilbhadu155@gmail.com',
+    handle: '@SunilBhadu',
     socials: [
       {
         name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/raphael-giraud-60939519a/',
+        url: 'https://www.linkedin.com/in/sunil-bhadu-xx',
       },
       {
         name: 'Youtube',
         url: 'https://www.youtube.com/@toukoum',
       },
       {
-        name: 'Instagram',
-        url: 'https://www.instagram.com/raphael.giraud/',
+        name: 'GitHub',
+        url: 'https://github.com/SunilBhadu',
       },
       {
         name: 'Discord',
         url: 'https://discord.com/users/toukoum',
-      },
-      {
-        name: 'Github',
-        url: 'https://github.com/toukoum',
       },
       {
         name: 'X',
@@ -38,7 +32,6 @@ export function Contact() {
     ],
   };
 
-  // Function to handle opening links
   const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };

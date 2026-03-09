@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { toast } from 'sonner';
+
 
 // Component imports
 import ChatBottombar from '@/components/chat/chat-bottombar';
@@ -14,8 +14,6 @@ import {
   ChatBubble,
   ChatBubbleMessage,
 } from '@/components/ui/chat/chat-bubble';
-import WelcomeModal from '@/components/welcome-modal';
-import { Info } from 'lucide-react';
 import HelperBoost from './HelperBoost';
 
 // ClientOnly component for client-side rendering
@@ -44,60 +42,20 @@ interface AvatarProps {
 // Dynamic import of Avatar component
 const Avatar = dynamic<AvatarProps>(
   () =>
-    Promise.resolve(({ hasActiveTool, videoRef, isTalking }: AvatarProps) => {
-      // This function will only execute on the client
-      const isIOS = () => {
-        // Multiple detection methods
-        const userAgent = window.navigator.userAgent;
-        const platform = window.navigator.platform;
-        const maxTouchPoints = window.navigator.maxTouchPoints || 0;
-
-        // UserAgent-based check
-        const isIOSByUA =
-          //@ts-ignore
-          /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-
-        // Platform-based check
-        const isIOSByPlatform = /iPad|iPhone|iPod/.test(platform);
-
-        // iPad Pro check
-        const isIPadOS =
-          //@ts-ignore
-          platform === 'MacIntel' && maxTouchPoints > 1 && !window.MSStream;
-
-        // Safari check
-        const isSafari = /Safari/.test(userAgent) && !/Chrome/.test(userAgent);
-
-        return isIOSByUA || isIOSByPlatform || isIPadOS || isSafari;
-      };
-
-      // Conditional rendering based on detection
+    Promise.resolve(({ hasActiveTool }: AvatarProps) => {
       return (
         <div
           className={`flex items-center justify-center rounded-full transition-all duration-300 ${hasActiveTool ? 'h-20 w-20' : 'h-28 w-28'}`}
         >
           <div
-            className="relative cursor-pointer"
+            className="relative cursor-pointer overflow-hidden rounded-full"
             onClick={() => (window.location.href = '/')}
           >
-            {isIOS() ? (
-              <img
-                src="/landing-memojis.png"
-                alt="iOS avatar"
-                className="h-full w-full scale-[1.8] object-contain"
-              />
-            ) : (
-              <video
-                ref={videoRef}
-                className="h-full w-full scale-[1.8] object-contain"
-                muted
-                playsInline
-                loop
-              >
-                <source src="/final_memojis.webm" type="video/webm" />
-                <source src="/final_memojis_ios.mp4" type="video/mp4" />
-              </video>
-            )}
+            <img
+              src="/avatar-landing.png"
+              alt="AI Avatar"
+              className={`object-cover object-center rounded-full ${hasActiveTool ? 'h-20 w-20' : 'h-28 w-28'}`}
+            />
           </div>
         </div>
       );
@@ -151,16 +109,111 @@ const Chat = () => {
   const reload = async () => null;
   const addToolResult = () => {};
 
+  // Queries handled locally without API calls — map query text to tool name
+  const LOCAL_TOOL_QUERIES: Record<string, string> = {
+    "What are your projects? What are you working on right now?": "getProjects",
+    "What are your skills? Give me a list of your soft and hard skills.": "getSkills",
+    "How can I reach you? What kind of project would make you say \"yes\" immediately?": "getContact",
+    "Who are you? I want to know more about you.": "getPresentation",
+  };
+
+  const LOCAL_TOOL_REPLIES: Record<string, string> = {
+    getProjects: "Here are the projects I've worked on:",
+    getSkills: "Here are my skills and areas of expertise:",
+    getContact: "Here's how you can reach me:",
+    getPresentation: "",
+  };
+
+  // Detect intent from free-form queries for fallback rendering
+  const detectIntent = (query: string): string | null => {
+    const q = query.toLowerCase();
+    if (q.includes('project') || q.includes('work') || q.includes('built') || q.includes('portfolio')) return 'getProjects';
+    if (q.includes('skill') || q.includes('tech') || q.includes('stack') || q.includes('know')) return 'getSkills';
+    if (q.includes('contact') || q.includes('reach') || q.includes('email') || q.includes('hire')) return 'getContact';
+    if (q.includes('who are you') || q.includes('about you') || q.includes('introduce') || q.includes('yourself')) return 'getPresentation';
+    return null;
+  };
+
+  // Fallback text used when the API is unavailable
+  const FALLBACK_TEXTS: Record<string, string> = {
+    getProjects: "Here are my projects! (AI is temporarily unavailable, but all the details are below 👇)",
+    getSkills: "Here are my skills! (AI is temporarily unavailable, but the full list is below 👇)",
+    getContact: "Here's how to reach me! (AI is temporarily unavailable, but the contact info is below 👇)",
+    getPresentation: "Here's a quick intro about me! (AI is temporarily unavailable 👇)",
+    default: "I'm having trouble connecting to the AI right now. You can still explore my portfolio using the **Me**, **Projects**, **Skills**, and **Contact** buttons below — they all work without any limit! 🚀",
+    rateLimit: "You've reached the daily message limit (20 messages per day). Feel free to keep exploring using the quick buttons below — **Me**, **Projects**, **Skills**, and **Contact** all work without any limit! 👇",
+  };
+
+  const showFallbackMessage = (query: string, isRateLimit = false) => {
+    if (isRateLimit) {
+      setMessages(prev => [...prev, {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: FALLBACK_TEXTS.rateLimit,
+      }]);
+      return;
+    }
+
+    const intent = detectIntent(query);
+    if (intent) {
+      setMessages(prev => [...prev, {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: FALLBACK_TEXTS[intent],
+        parts: [{
+          type: 'tool-invocation',
+          toolInvocation: {
+            state: 'result',
+            toolName: intent,
+            toolCallId: `fallback-${Date.now()}`,
+            result: {},
+          },
+        }],
+      }]);
+    } else {
+      setMessages(prev => [...prev, {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: FALLBACK_TEXTS.default,
+      }]);
+    }
+  };
+
   const append = async (message: { role: 'user', content: string }) => {
     setIsLoading(true);
     setLoadingSubmit(true);
-    
+
     const newUserMessage: Message = {
       id: Date.now().toString(),
       role: message.role,
       content: message.content,
     };
-    
+
+    // Handle local tool queries without calling the API
+    const toolName = LOCAL_TOOL_QUERIES[message.content];
+    if (toolName) {
+      const aiMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: LOCAL_TOOL_REPLIES[toolName],
+        parts: [{
+          type: 'tool-invocation',
+          toolInvocation: {
+            state: 'result',
+            toolName,
+            toolCallId: `local-${Date.now()}`,
+            result: {},
+          },
+        }],
+      };
+      setMessages(prev => [...prev, newUserMessage, aiMessage]);
+      setLoadingSubmit(false);
+      setIsLoading(false);
+      setIsTalking(true);
+      setTimeout(() => setIsTalking(false), 1000);
+      return;
+    }
+
     const contextMessages = [...messages, newUserMessage];
     setMessages(contextMessages);
 
@@ -174,20 +227,23 @@ const Chat = () => {
         signal: abortControllerRef.current.signal,
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      // Handle rate limiting gracefully
+      if (response.status === 429) {
+        showFallbackMessage(message.content, true);
+        return;
       }
 
       const resJson = await response.json();
-      
+
       if (!resJson.success) {
-        throw new Error(resJson.error || 'API Error');
+        showFallbackMessage(message.content);
+        return;
       }
 
       const aiResponseContent = resJson.data;
 
       setMessages(prev => [
-        ...prev, 
+        ...prev,
         {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
@@ -195,34 +251,19 @@ const Chat = () => {
         }
       ]);
 
-      // onResponse / success effects
       setLoadingSubmit(false);
       setIsTalking(true);
-      if (videoRef.current) {
-        videoRef.current.play().catch((error) => {
-          console.error('Failed to play video:', error);
-        });
-      }
 
-      // Simulate talking for a short duration since it's an instant text display now
       setTimeout(() => {
         setIsTalking(false);
-        if (videoRef.current) {
-          videoRef.current.pause();
-        }
-      }, Math.min(3000, Math.max(1000, aiResponseContent.length * 20))); // Talk between 1-3 seconds based on length
+      }, Math.min(3000, Math.max(1000, aiResponseContent.length * 20)));
 
     } catch (error: any) {
       if (error.name === 'AbortError') return;
-      
-      setLoadingSubmit(false);
-      setIsTalking(false);
-      if (videoRef.current) {
-        videoRef.current.pause();
-      }
       console.error('Chat error:', error);
-      toast.error(`Error: ${error.message}`);
+      showFallbackMessage(message.content);
     } finally {
+      setLoadingSubmit(false);
       setIsLoading(false);
     }
   };
@@ -334,16 +375,6 @@ const Chat = () => {
 
   return (
     <div className="relative h-screen overflow-hidden">
-      <div className="absolute top-6 right-8 z-51 flex flex-col-reverse items-center justify-center gap-1 md:flex-row">
-        <WelcomeModal
-          trigger={
-            <div className="hover:bg-accent cursor-pointer rounded-2xl px-3 py-1.5">
-              <Info className="text-accent-foreground h-8" />
-            </div>
-          }
-        />
-      </div>
-
       {/* Fixed Avatar Header with Gradient */}
       <div
         className="fixed top-0 right-0 left-0 z-50"

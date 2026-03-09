@@ -71,60 +71,64 @@ const CodeBlock = ({ content }: { content: string }) => {
   );
 };
 
+const renderTextContent = (text: string) => {
+  const contentParts = text.split('```');
+  return (
+    <div className="w-full space-y-4">
+      {contentParts.map((content, i) =>
+        i % 2 === 0 ? (
+          <div key={`text-${i}`} className="prose dark:prose-invert w-full">
+            <Markdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children }) => (
+                  <p className="break-words whitespace-pre-wrap">
+                    {children}
+                  </p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="my-4 list-disc pl-6">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="my-4 list-decimal pl-6">{children}</ol>
+                ),
+                li: ({ children }) => <li className="my-1">{children}</li>,
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {content}
+            </Markdown>
+          </div>
+        ) : (
+          <CodeBlock key={`code-${i}`} content={content} />
+        )
+      )}
+    </div>
+  );
+};
+
 export default function ChatMessageContent({
   message,
 }: ChatMessageContentProps) {
-  // Only handle text parts
   const renderContent = () => {
-    return message.parts?.map((part, partIndex) => {
+    // If no parts, fall back to message.content string
+    if (!message.parts || message.parts.length === 0) {
+      if (!message.content) return null;
+      return renderTextContent(message.content);
+    }
+
+    return message.parts.map((part, partIndex) => {
       if (part.type !== 'text' || !part.text) return null;
-
-      // Split content by code block markers
-      const contentParts = part.text.split('```');
-
-      return (
-        <div key={partIndex} className="w-full space-y-4">
-          {contentParts.map((content, i) =>
-            i % 2 === 0 ? (
-              // Regular text content
-              <div key={`text-${i}`} className="prose dark:prose-invert w-full">
-                <Markdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    p: ({ children }) => (
-                      <p className="break-words whitespace-pre-wrap">
-                        {children}
-                      </p>
-                    ),
-                    ul: ({ children }) => (
-                      <ul className="my-4 list-disc pl-6">{children}</ul>
-                    ),
-                    ol: ({ children }) => (
-                      <ol className="my-4 list-decimal pl-6">{children}</ol>
-                    ),
-                    li: ({ children }) => <li className="my-1">{children}</li>,
-                    a: ({ href, children }) => (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-500 hover:underline"
-                      >
-                        {children}
-                      </a>
-                    ),
-                  }}
-                >
-                  {content}
-                </Markdown>
-              </div>
-            ) : (
-              // Code block content
-              <CodeBlock key={`code-${i}`} content={content} />
-            )
-          )}
-        </div>
-      );
+      return <div key={partIndex}>{renderTextContent(part.text)}</div>;
     });
   };
 

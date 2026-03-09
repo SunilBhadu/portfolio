@@ -41,8 +41,8 @@ export const userProfile = {
     ],
 
     skills: {
-        languages: ["C", "C++", "JavaScript", "TypeScript", "Python", "Java"],
-        frontend: ["HTML", "CSS", "Angular", "React", "Next.js"],
+        languages: ["JavaScript", "TypeScript", "Python", "C", "C++", "Java"],
+        frontend: ["Next.js", "React", "HTML", "CSS", "Angular",],
         backend: ["Node.js", "Express.js", "NestJS", "Django"],
         databases: ["MongoDB", "PostgreSQL"],
         cloud_and_devops: ["AWS S3", "AWS SES", "Azure Blob Storage", "Docker"],
@@ -53,6 +53,7 @@ export const userProfile = {
             "Twilio (SMS)",
             "Mailgun",
             "SMTP",
+            "Anthropic API",
             "OpenAI API",
             "Google Calendar",
             "Outlook Calendar",

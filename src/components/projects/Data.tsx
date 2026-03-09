@@ -1,353 +1,75 @@
 import Image from 'next/image';
-import { Image as Img } from 'lucide-react';
 import { ChevronRight, Link } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { url } from 'inspector';
 
-// Enhanced project content array with all projects
 const PROJECT_CONTENT = [
   {
-    title: 'Synto',
+    title: 'EaseCare',
+    category: 'Healthcare Platform',
     description:
-      'Synto is an AI-powered interface that transforms complex blockchain interactions into simple, natural language commands. Whether you want to send tokens, stake assets, swap coins, or even create NFTs or liquidity pools, just tell Synto what to do — no manual wallet interactions, no technical jargon. One of my biggest projects yet',
-    techStack: [
-      'Next.js',
-      'TailwindCSS',
-      'Web3.js',
-      'shadcn-ui',
-      'TypeScript',
-      'Phantom Wallet',
-      'OpenAI API',
-      'Vercel AI SDK',
-      'Solana Agent kit',
-      'Neon',
-      'Prisma'
-    ],
-    date: '2025',
-    links: [
-      {
-        name: 'website',
-        url: 'https://synto.fun',
-      },
-      {
-        name: 'Launch Video',
-        url: 'https://www.youtube.com/watch?v=4QUE2KgKDUw',
-      },
-      {
-        name: 'X',
-        url: 'https://x.com/chainSynto',
-      },
-      {
-        name: 'Technical Video',
-        url: 'https://www.youtube.com/watch?v=1CjBLKPUwtA&feature=youtu.be',
-      },
-      {
-        name: 'Pitch Deck',
-        url: 'https://drive.google.com/file/d/1B3m44mEgv81rJHfjNfTKi147yX4raQed/view?usp=sharing',
-      },
-      {
-        name: 'Usage tutorial',
-        url: 'https://www.youtube.com/watch?v=PRu1cfvT2bA',
-      }
-    ],
-    images: [
-      {
-        src: '/synto1.png',
-        alt: 'Synto landing page',
-      },
-      {
-        src: '/synto2.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto3.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto4.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto5.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto6.png',
-        alt: 'Synto chat interface',
-      },
-    ],
-  },
-  {
-    title: 'Rrate',
-    description:
-      "Rrate is a fun website to allow user to compare his salary with the richest people in the world. Try it now it's online!",
-    techStack: ['Html', 'Css', 'Javascript'],
-    date: '2024',
-    links: [
-      {
-        name: 'website',
-        url: 'https://rrate.app',
-      },
-      {
-        name: 'github',
-        url: 'https://github.com/toukoum/Rrate',
-      },
-    ],
-    images: [
-      {
-        src: '/rrate1.png',
-        alt: 'Rrate landing page',
-      },
-      {
-        src: '/rrate2.png',
-        alt: 'Rrate comparison page',
-      },
-      {
-        src: '/rrate3.png',
-        alt: 'Rrate comparison page',
-      },
-    ],
-  },
-  {
-    title: 'Defai',
-    description:
-      "We Win ETHOXford hackathon by building DEFAI. DEFAI stands for Decentralized Finance Artificial Intelligence. It's an AI-powered chat interface that simplifies on-chain operations on the Avalanche blockchain by allowing users to interact using natural language. This makes complex DeFi operations accessible even for those with limited technical expertise.",
-    techStack: [
-      'Next.js',
-      'TailwindCSS',
-      'shadcn-ui',
-      'Vercel AI SDK',
-      'TypeScript',
-    ],
-    date: '2025',
-    links: [
-      {
-        name: 'website',
-        url: 'https://dorahacks.io/buidl/22605',
-      },
-      {
-        name: 'github',
-        url: 'https://github.com/toukoum/DEFAI',
-      },
-      {
-        name: 'LinkedIn',
-        url: 'https://www.linkedin.com/feed/update/urn:li:activity:7299337190151483392/',
-      },
-      {
-        name: 'Youtube Video',
-        url: 'https://www.youtube.com/watch?v=N9O7los4-ng&t=34s&ab_channel=Sunil',
-      }
-    ],
-    images: [
-      {
-        src: '/defai1.png',
-        alt: 'Landing Page of Defai',
-      },
-      {
-        src: '/defai2.png',
-        alt: 'Confirmation popup of Defai',
-      },
-      {
-        src: '/defai3.png',
-        alt: 'Chatbot of Defai',
-      },
-      {
-        src: '/defai4.jpeg',
-        alt: 'Winner team',
-      },
-    ],
-  },
-  {
-    title: 'Fitgear',
-    description:
-      'Won the Gotta Go Hack IA by building Fitgear, a virtual voice seller accessible by QR code to improve the ratio between customers and sellers. Created an AI pipeline with API calls and a RAG system for natural language interactions.',
-    techStack: ['Next.js', 'TailwindCSS', 'OpenAI API', 'Langchain'],
-    date: '2024',
-    links: [
-      {
-        name: 'Linkedin',
-        url: 'https://www.linkedin.com/posts/raphael-giraud-60939519a_hackathon-innovation-sporttech-activity-7210399263774674946-qSXq?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6vwikBVSEkS7XWktWS7y6GR3GHwAlKslc',
-      },
-    ],
-    images: [
-      {
-        src: '/fitgear2.png',
-        alt: 'Fitgear chatbot',
-      },
-      {
-        src: '/fitgear1.png',
-        alt: 'Fitgear landing page',
-      },
-    ],
-  },
-  {
-    title: 'Datai',
-    description:
-      "DATAI is an AI-powered agent that lets non-technical users query a database using natural language without writing SQL. Built using Next.js, TailwindCSS, shadcn-ui, and Anthropic's Claude API, this project focuses on simplicity, speed, and user-friendly design.",
-    techStack: [
-      'Next.js',
-      'TailwindCSS',
-      'shadcn-ui',
-      'Claude API',
-      'TypeScript',
-    ],
-    date: '2024',
-    links: [
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/datai',
-      },
-      {
-        name: 'Youtube Video Demo',
-        url: 'https://youtu.be/iE0RXjdbQsw',
-      }
-    ],
-    images: [
-      {
-        src: '/datai1.png',
-        alt: 'Datai landing page',
-      },
-      {
-        src: '/datai2.png',
-        alt: 'Datai chatbot',
-      },
-      {
-        src: '/datai3.png',
-        alt: 'Datai chatbot',
-      },
-      {
-        src: '/datai4.png',
-        alt: 'Datai chatbot',
-      }
-    ],
-  },
-  {
-    title: '3d Pong Game',
-    description:
-      "Transcendance is the final project of my 42 cursus. It's a 3D pong game with multiplayer capabilities, user authentication, and real-time gameplay. We had to do everything from scratch, so it was pretty challenging and we learned a lot.",
-    techStack: ['Django', 'Python', 'JavaScript', 'Websockets', 'PostgreSQL', 'Docker', 'Nginx', 'Web3', 'Solidity'],
+      'A healthcare platform where patients can book appointments with doctors via video call and offline. Integrated Stripe for payments, AWS SES for emails, and Agora for video calls. Built with role-based access control and JWT authentication.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Stripe', 'AWS SES', 'Agora', 'JWT'],
     date: '2023',
-    links: [
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/Transcendance',
-      },
-    ],
-    images: [
-      {
-        src: '/trans1.png',
-        alt: 'Transcendance landing page',
-      },
-      {
-        src: '/trans2.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans3.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans4.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans5.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans6.png',
-        alt: 'Transcendance game',
-      }
-
-    ],
+    links: [{ name: 'Website', url: 'https://easecare.ca' }],
+    images: [{ src: '/sunil.jpg', alt: 'EaseCare Healthcare Platform' }],
   },
   {
-    title: 'Minishell',
+    title: 'WonderMD',
+    category: 'Healthcare Platform',
     description:
-      "Minishell is a project that aims to create a simple shell. It's a great introduction to process creation and management in C, offering fundamental Unix command-line functionality. This was a very challenging project, but I learned a lot from it.",
-    techStack: ['C', 'Unix', 'Bash'],
+      'Healthcare platform with a multi-user video call feature using Agora (multiple patients in one appointment). Focused on backend development to enable scalable telehealth sessions.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Agora'],
     date: '2023',
-    links: [
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/Michelle-42',
-      },
-    ],
-    images: [
-      {
-        src: '/minishell1.png',
-        alt: 'Minishell landing page',
-      }
-    ],
+    links: [{ name: 'Website', url: 'https://wondermd.ca/' }],
+    images: [{ src: '/sunil.jpg', alt: 'WonderMD Healthcare Platform' }],
   },
   {
-    title: 'YouBot',
+    title: 'Omniva Telehealth',
+    category: 'Healthcare SaaS (Multi-tenant)',
     description:
-      'YouBot is a Python Bot that Scrapes Videos from Pexels, adds a random song from a Songs Folder, then auto-uploads the videos to your YouTube Channel for continuous content generation.',
-    techStack: ['Python', 'YouTube API', 'Pexels API'],
-    date: '2022',
-    links: [
-      {
-        name: "YouTube Video",
-        url: "https://youtu.be/vp1v5mBG7rA "
-      },
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/YouBot',
-      }
-    ],
-    images: [
-      {
-        src: '/youbot1.jpg',
-        alt: 'Youbot landing page',
-      },
-      {
-        src: '/youbot2.png',
-        alt: 'Youbot chatbot',
-      },
-    ],
+      'A multi-tenant healthcare SaaS platform with one master DB for client info and separate DB per client. Features wallet system (Stripe/Razorpay), AWS SES, SMTP, Mailgun for email, Twilio for SMS, AWS S3 for file uploads, and RBAC.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Stripe', 'Razorpay', 'Twilio', 'AWS S3', 'AWS SES', 'Mailgun'],
+    date: '2023–2024',
+    links: [{ name: 'Website', url: 'https://omnivatelehealth.com' }],
+    images: [{ src: '/sunil.jpg', alt: 'Omniva Telehealth SaaS' }],
   },
   {
-    title: 'Old Portfolio',
+    title: 'Neem Health',
+    category: 'Healthcare Platform',
     description:
-      'My previous traditional portfolio built with vanilla HTML, CSS and JS with GSAP animations for a smooth and interactive user experience.',
-    techStack: ['HTML', 'CSS', 'JavaScript', 'GSAP'],
-    date: '2022',
-    links: [
-      {
-        name: 'Website',
-        url: 'https://toukoum.github.io/oldPortfolio/',
-      },
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/portfolio',
-      },
-    ],
-    images: [
-      {
-        src: '/oldport1.png',
-        alt: 'Old Portfolio landing page',
-      },
-      {
-        src: '/oldport2.png',
-        alt: 'Old Portfolio projects',
-      }
-    ],
+      'Full-stack healthcare platform built solo from planning to deployment. Features AI symptom checker chatbot (OpenAI API), Mailgun for emails, Azure Blob Storage for file uploads, and Google/Outlook Calendar integrations for appointments.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'React.js', 'OpenAI API', 'Azure Blob Storage', 'Mailgun', 'Google Calendar'],
+    date: '2024',
+    links: [{ name: 'Website', url: 'https://neemhealth.ai/' }],
+    images: [{ src: '/sunil.jpg', alt: 'Neem Health Platform' }],
+  },
+  {
+    title: 'SubOs',
+    category: 'Subscription Management',
+    description:
+      'Internal subscription management system handling subscriptions for two company products (Artha and Impler). Built a reusable npm package for integration across products. Sole developer — managed from planning to deployment.',
+    techStack: ['NestJS', 'PostgreSQL', 'TypeScript', 'Next.js', 'Stripe'],
+    date: '2024',
+    links: [],
+    images: [{ src: '/sunil.jpg', alt: 'SubOs Subscription System' }],
+  },
+  {
+    title: 'Impler',
+    category: 'Open Source Data Import',
+    description:
+      "Knovator's open-source data import tool built as a monorepo. Managed solo from planning to deployment. Uses Docker for containerization and is publicly available for developers to integrate data import into their products.",
+    techStack: ['Next.js', 'NestJS', 'MongoDB', 'TypeScript', 'Docker'],
+    date: '2024',
+    links: [{ name: 'Website', url: 'https://impler.io/' }],
+    images: [{ src: '/sunil.jpg', alt: 'Impler Data Import Tool' }],
   },
 ];
 
-// Define interface for project prop
 interface ProjectProps {
   title: string;
-  description?: string;
-  techStack?: string[];
-  date?: string;
-  links?: { name: string; url: string }[];
-  images?: { src: string; alt: string }[];
 }
 
 const ProjectContent = ({ project }: { project: ProjectProps }) => {
-  // Find the matching project data
   const projectData = PROJECT_CONTENT.find((p) => p.title === project.title);
 
   if (!projectData) {
@@ -367,15 +89,14 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
             {projectData.description}
           </p>
 
-          {/* Tech stack */}
           <div className="pt-4">
             <h3 className="mb-3 text-sm tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
               Technologies
             </h3>
             <div className="flex flex-wrap gap-2">
-              {projectData.techStack.map((tech, index) => (
+              {projectData.techStack.map((tech) => (
                 <span
-                  key={index}
+                  key={tech}
                   className="rounded-full bg-neutral-200 px-3 py-1 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
                 >
                   {tech}
@@ -387,7 +108,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
       </div>
 
       {/* Links section */}
-      {projectData.links && projectData.links.length > 0 && (
+      {projectData.links.length > 0 && (
         <div className="mb-24">
           <div className="px-6 mb-4 flex items-center gap-2">
             <h3 className="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
@@ -397,9 +118,9 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
           </div>
           <Separator className="my-4" />
           <div className="space-y-3">
-            {projectData.links.map((link, index) => (
+            {projectData.links.map((link) => (
               <a
-                key={index}
+                key={link.name}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -414,12 +135,12 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
       )}
 
       {/* Images gallery */}
-      {projectData.images && projectData.images.length > 0 && (
+      {projectData.images.length > 0 && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
-            {projectData.images.map((image, index) => (
+            {projectData.images.map((image) => (
               <div
-                key={index}
+                key={image.alt}
                 className="relative aspect-video overflow-hidden rounded-2xl"
               >
                 <Image
@@ -437,60 +158,9 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
   );
 };
 
-// Main data export with updated content
-export const data = [
-  {
-    category: 'Startup Project',
-    title: 'Synto',
-    src: '/syntopreview.png',
-    content: <ProjectContent project={{ title: 'Synto' }} />,
-  },
-  {
-    category: 'Fun Tool',
-    title: 'Rrate',
-    src: '/ratepreview.png',
-    content: <ProjectContent project={{ title: 'Rrate' }} />,
-  },
-  {
-    category: 'Hackathon Winner',
-    title: 'Defai',
-    src: '/defaipreview.png',
-    content: <ProjectContent project={{ title: 'Defai' }} />,
-  },
-  {
-    category: 'Hackathon Winner',
-    title: 'Fitgear',
-    src: '/fitgearpreview.png',
-    content: <ProjectContent project={{ title: 'Fitgear' }} />,
-  },
-  {
-    category: 'Business Intelligence',
-    title: 'Datai',
-    src: '/dataipreview.png',
-    content: <ProjectContent project={{ title: 'Datai' }} />,
-  },
-  {
-    category: '42 Project',
-    title: '3d Pong Game',
-    src: '/transcendancepreview.png',
-    content: <ProjectContent project={{ title: '3d Pong Game' }} />,
-  },
-  {
-    category: '42 Project',
-    title: 'Minishell',
-    src: '/minishellpreview.png',
-    content: <ProjectContent project={{ title: 'Minishell' }} />,
-  },
-  {
-    category: 'Automation',
-    title: 'YouBot',
-    src: '/youbotpreview.png',
-    content: <ProjectContent project={{ title: 'YouBot' }} />,
-  },
-  {
-    category: 'Web Development',
-    title: 'Old Portfolio',
-    src: '/oldportfoliopreview.png',
-    content: <ProjectContent project={{ title: 'Old Portfolio' }} />,
-  },
-];
+export const data = PROJECT_CONTENT.map((project) => ({
+  category: project.category,
+  title: project.title,
+  src: project.images[0]?.src || '/sunil.jpg',
+  content: <ProjectContent project={{ title: project.title }} />,
+}));

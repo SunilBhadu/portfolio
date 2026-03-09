@@ -38,7 +38,7 @@ const questions = {
   Me: 'Who are you? I want to know more about you.',
   Projects: 'What are your projects? What are you working on right now?',
   Skills: 'What are your skills? Give me a list of your soft and hard skills.',
-  Fun: "What the craziest thing you've ever done? (mb?) What are your hobbies? ",
+  Fun: "What are your hobbies and interests outside of work?",
   Contact:
     'How can I reach you? What kind of project would make you say "yes" immediately?',
 };
@@ -53,13 +53,11 @@ const questionConfig = [
 
 // Helper drawer data
 const specialQuestions = [
-  'Mountain Bike you said?? Show me!',
   'Who are you?',
-  'Can I see your resume?',
   'What projects are you most proud of?',
   'What are your skills?',
   'How can I reach you?',
-  "What's the craziest thing you've ever done?",
+  'Tell me about your healthcare projects.',
 ];
 
 const questionsByCategory = [
@@ -79,7 +77,6 @@ const questionsByCategory = [
     name: 'Professional',
     icon: BriefcaseIcon,
     questions: [
-      'Can I see your resume?',
       'What makes you a valuable team member?',
       'Where are you working now?',
       'Why should I hire you?',
@@ -90,7 +87,12 @@ const questionsByCategory = [
     id: 'projects',
     name: 'Projects',
     icon: CodeIcon,
-    questions: ['What projects are you most proud of?'],
+    questions: [
+      'What projects are you most proud of?',
+      'Tell me about your healthcare projects.',
+      'What is Omniva Telehealth?',
+      'Tell me about Impler.',
+    ],
   },
   {
     id: 'skills',
@@ -98,7 +100,8 @@ const questionsByCategory = [
     icon: GraduationCapIcon,
     questions: [
       'What are your skills?',
-      'How was your experience at École 42?',
+      'What tech stack do you use most?',
+      'Have you worked with AI integrations?',
     ],
   },
   {
@@ -106,8 +109,7 @@ const questionsByCategory = [
     name: 'Fun',
     icon: PartyPopper,
     questions: [
-      'Mountain Bike you said?? Show me!',
-      "What's the craziest thing you've ever done?",
+      'What are your hobbies outside of work?',
       'Mac or PC?',
       'What are you certain about that 90% get wrong?',
     ],

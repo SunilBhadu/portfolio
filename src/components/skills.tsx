@@ -3,91 +3,76 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
-import { Code, Cpu, PenTool, Users } from 'lucide-react';
+import { Cloud, Code, Cpu, Database, Plug, Shield } from 'lucide-react';
 
 const Skills = () => {
   const skillsData = [
     {
-      category: 'Frontend Development',
+      category: 'Languages',
       icon: <Code className="h-5 w-5" />,
-      skills: [
-        'HTML',
-        'CSS',
-        'JavaScript/TypeScript',
-        'Tailwind CSS',
-        'Bootstrap',
-        'Next.js',
-        'React',
-        'Vercel AI SDK',
-        'Gsap',
-      ],
+      skills: ['JavaScript', 'TypeScript', 'Python', 'C', 'C++','Java'],
       color: 'bg-blue-50 text-blue-600 border border-blue-200',
     },
     {
-      category: 'Backend & Systems',
+      category: 'Frontend',
+      icon: <Code className="h-5 w-5" />,
+      skills: ['Next.js', 'React','HTML', 'CSS', 'Angular',  ],
+      color: 'bg-cyan-50 text-cyan-600 border border-cyan-200',
+    },
+    {
+      category: 'Backend',
       icon: <Cpu className="h-5 w-5" />,
-      skills: [
-        'Unix',
-        'C',
-        'C++',
-        'Python',
-        'Typescript',
-        'Git',
-        'GitHub',
-        'Docker',
-        'GCP',
-        'PostgreSQL',
-      ],
+      skills: ['Node.js', 'Express.js', 'NestJS', 'Django'],
       color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
     },
     {
-      category: 'Design & Creative Tools',
-      icon: <PenTool className="h-5 w-5" />,
-      skills: ['Figma', 'Davinci Code', 'Illustrator', 'Canva', 'Keynote'],
-      color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
-    },
-    {
-      category: 'Soft Skills',
-      icon: <Users className="h-5 w-5" />,
-      skills: [
-        'Communication',
-        'Problem-Solving',
-        'Adaptability',
-        'Learning Agility',
-        'Teamwork',
-        'Creativity',
-        'Focus',
-      ],
+      category: 'Databases',
+      icon: <Database className="h-5 w-5" />,
+      skills: ['MongoDB', 'PostgreSQL'],
       color: 'bg-amber-50 text-amber-600 border border-amber-200',
     },
     {
-      category: 'AI & Fullstack Engineering',
-      icon: <Cpu className="h-5 w-5" />,
+      category: 'Cloud & DevOps',
+      icon: <Cloud className="h-5 w-5" />,
+      skills: ['AWS S3', 'AWS SES', 'Azure Blob Storage', 'Docker'],
+      color: 'bg-orange-50 text-orange-600 border border-orange-200',
+    },
+    {
+      category: 'Integrations',
+      icon: <Plug className="h-5 w-5" />,
       skills: [
-        'LLM Providers (ChatGPT, Whisper, Groq, Mistral & Claude)',
-        'AI Agents',
-        'Prompt engineering',
-        'Vector databases (Weaviate, Pinecone)',
-        'RAG (Retrieval-Augmented Generation)',
-        'Tool routing & calling',
-        'Hugging Face Transformers',
-        'Vercel AI SDK',
-        'Supabase',
-        'Prisma',
-        'Next.js',
+        'Stripe',
+        'Razorpay',
+        'Agora (Video Call)',
+        'Twilio (SMS)',
+        'Mailgun',
+        'SMTP',
+        'Anthropic API',
+        'OpenAI API',
+        'Google Calendar',
+        'Outlook Calendar',
       ],
       color: 'bg-purple-50 text-purple-600 border border-purple-200',
     },
+    {
+      category: 'Auth & Security',
+      icon: <Shield className="h-5 w-5" />,
+      skills: ['JWT', 'Role-Based Access Control (RBAC)'],
+      color: 'bg-red-50 text-red-600 border border-red-200',
+    },
+    {
+      category: 'Tools & Practices',
+      icon: <Cpu className="h-5 w-5" />,
+      skills: ['Git', 'Monorepo', 'npm packages', 'REST APIs', 'Multi-tenant Architecture'],
+      color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
+    },
   ];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
@@ -130,9 +115,9 @@ const Skills = () => {
             initial="hidden"
             animate="visible"
           >
-            {skillsData.map((section, index) => (
+            {skillsData.map((section) => (
               <motion.div
-                key={index}
+                key={section.category}
                 className="space-y-3 px-0"
                 variants={itemVariants}
               >
@@ -149,16 +134,16 @@ const Skills = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  {section.skills.map((skill, idx) => (
+                  {section.skills.map((skill) => (
                     <motion.div
-                      key={idx}
+                      key={skill}
                       variants={badgeVariants}
                       whileHover={{
                         scale: 1.04,
                         transition: { duration: 0.2 },
                       }}
                     >
-                      <Badge className={`border px-3 py-1.5 font-normal`}>
+                      <Badge className="border px-3 py-1.5 font-normal">
                         {skill}
                       </Badge>
                     </motion.div>
