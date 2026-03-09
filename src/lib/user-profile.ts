@@ -41,9 +41,9 @@ export const userProfile = {
     ],
 
     skills: {
-        languages: ["JavaScript", "TypeScript", "Python", "C", "C++", "Java"],
-        frontend: ["Next.js", "React", "HTML", "CSS", "Angular",],
-        backend: ["Node.js", "Express.js", "NestJS", "Django"],
+        languages: ["JavaScript", "TypeScript", "Python"],
+        frontend: ["Next.js", "React", "Angular"],
+        backend: ["Node.js", "NestJS", "Express.js"],
         databases: ["MongoDB", "PostgreSQL"],
         cloud_and_devops: ["AWS S3", "AWS SES", "Azure Blob Storage", "Docker"],
         integrations: [
@@ -67,11 +67,12 @@ export const userProfile = {
             "Multi-tenant Architecture",
         ],
         ai_tools_used: [
-            "ChatGPT",
+            "Claude",
             "Windsurf",
             "Antigravity",
-            "Claude",
             "CodeRabbit",
+            "Gemini",
+            "ChatGPT"
         ],
     },
 
@@ -104,47 +105,7 @@ export const userProfile = {
             role: "Full Stack Developer",
             period: "April 2023 – Present",
             projects: [
-                {
-                    name: "EaseCare",
-                    client: true,
-                    url: "https://easecare.ca",
-                    type: "Healthcare Platform",
-                    techStack: ["Node.js", "Express.js", "MongoDB"],
-                    details: [
-                        "Patients can book appointments with doctors via video call and offline",
-                        "Integrated Stripe for payments",
-                        "Integrated AWS SES for emails",
-                        "Integrated Agora for video calls",
-                        "Role-based access control, JWT authentication",
-                    ],
-                },
-                {
-                    name: "WonderMD",
-                    client: true,
-                    url: "https://wondermd.ca/",
-                    type: "Healthcare Platform",
-                    techStack: ["Node.js", "Express.js", "MongoDB"],
-                    details: [
-                        "Developed multi-user video call feature using Agora (multiple patients in one appointment)",
-                        "Backend development",
-                    ],
-                },
-                {
-                    name: "Omniva Telehealth",
-                    product: true,
-                    url: "https://omnivatelehealth.com",
-                    type: "Healthcare SaaS (Multi-tenant)",
-                    techStack: ["Node.js", "Express.js", "MongoDB"],
-                    details: [
-                        "Multi-tenant database architecture: one master DB for client info + separate DB per client",
-                        "Integrated Stripe and Razorpay for patient payments",
-                        "Built wallet system: patients add money via Stripe/Razorpay, use it to book appointments",
-                        "Integrated AWS SES, SMTP, Mailgun for email",
-                        "Twilio for SMS notifications",
-                        "AWS S3 for file uploads",
-                        "Role-based access control, JWT authentication",
-                    ],
-                },
+
                 {
                     name: "Neem Health",
                     client: true,
@@ -183,6 +144,48 @@ export const userProfile = {
                         "Monorepo architecture",
                         "Used Docker for containerization",
                         "Managed solo from development to planning",
+                    ],
+                },
+
+                {
+                    name: "Omniva Telehealth",
+                    product: true,
+                    url: "https://omnivatelehealth.com",
+                    type: "Healthcare SaaS (Multi-tenant)",
+                    techStack: ["Node.js", "Express.js", "MongoDB"],
+                    details: [
+                        "Multi-tenant database architecture: one master DB for client info + separate DB per client",
+                        "Integrated Stripe and Razorpay for patient payments",
+                        "Built wallet system: patients add money via Stripe/Razorpay, use it to book appointments",
+                        "Integrated AWS SES, SMTP, Mailgun for email",
+                        "Twilio for SMS notifications",
+                        "AWS S3 for file uploads",
+                        "Role-based access control, JWT authentication",
+                    ],
+                },
+                {
+                    name: "EaseCare",
+                    client: true,
+                    url: "https://easecare.ca",
+                    type: "Healthcare Platform",
+                    techStack: ["Node.js", "Express.js", "MongoDB"],
+                    details: [
+                        "Patients can book appointments with doctors via video call and offline",
+                        "Integrated Stripe for payments",
+                        "Integrated AWS SES for emails",
+                        "Integrated Agora for video calls",
+                        "Role-based access control, JWT authentication",
+                    ],
+                },
+                {
+                    name: "WonderMD",
+                    client: true,
+                    url: "https://wondermd.ca/",
+                    type: "Healthcare Platform",
+                    techStack: ["Node.js", "Express.js", "MongoDB"],
+                    details: [
+                        "Developed multi-user video call feature using Agora (multiple patients in one appointment)",
+                        "Backend development",
                     ],
                 },
             ],

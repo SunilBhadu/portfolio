@@ -4,6 +4,46 @@ import { Separator } from '@/components/ui/separator';
 
 const PROJECT_CONTENT = [
   {
+    title: 'Neem Health',
+    category: 'Healthcare Platform',
+    description:
+      'Neem Health is a healthcare coordination platform designed to connect patients, doctors, and medical records in one unified system. The platform enables patients to search for doctors by symptoms, specialty, location, and insurance, and seamlessly book appointments online. It also includes an AI-powered health assistant that guides patients through symptom evaluation, doctor discovery, and appointment scheduling, making healthcare access faster and more organized.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'React.js', 'OpenAI API', 'Azure Blob Storage', 'Mailgun', 'Google Calendar'],
+    date: '2024',
+    links: [{ name: 'Website', url: 'https://neemhealth.ai/' }],
+    images: [{ src: '/sunil.jpg', alt: 'Neem Health Platform' }],
+  },
+  {
+    title: 'SubOS',
+    category: 'Subscription Management',
+    description:
+      'Internal subscription management system handling subscriptions for two company products (Artha and Impler). Built a reusable npm package for integration across products. Sole developer — managed from planning to deployment.',
+    techStack: ['NestJS', 'PostgreSQL', 'TypeScript', 'Next.js', 'Stripe'],
+    date: '2024',
+    links: [],
+    images: [{ src: '/sunil.jpg', alt: 'SubOs Subscription System' }],
+  },
+   {
+    title: 'Impler',
+    category: 'Open Source Data Import',
+    description:
+      "Knovator's open-source data import tool built as a monorepo. Managed solo from planning to deployment. Uses Docker for containerization and is publicly available for developers to integrate data import into their products.",
+    techStack: ['Next.js', 'NestJS', 'MongoDB', 'TypeScript', 'Docker'],
+    date: '2024',
+    links: [{ name: 'Website', url: 'https://impler.io/' }],
+    images: [{ src: '/sunil.jpg', alt: 'Impler Data Import Tool' }],
+  },
+  {
+    title: 'Omniva Telehealth',
+    category: 'Healthcare SaaS (Multi-tenant)',
+    description:
+      'A multi-tenant healthcare SaaS platform with one master DB for client info and separate DB per client. Features wallet system (Stripe/Razorpay), AWS SES, SMTP, Mailgun for email, Twilio for SMS, AWS S3 for file uploads, and RBAC.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Stripe', 'Razorpay', 'Twilio', 'AWS S3', 'AWS SES', 'Mailgun'],
+    date: '2023–2024',
+    links: [{ name: 'Website', url: 'https://omnivatelehealth.com' }],
+    images: [{ src: '/sunil.jpg', alt: 'Omniva Telehealth SaaS' }],
+  },
+  {
     title: 'EaseCare',
     category: 'Healthcare Platform',
     description:
@@ -23,46 +63,10 @@ const PROJECT_CONTENT = [
     links: [{ name: 'Website', url: 'https://wondermd.ca/' }],
     images: [{ src: '/sunil.jpg', alt: 'WonderMD Healthcare Platform' }],
   },
-  {
-    title: 'Omniva Telehealth',
-    category: 'Healthcare SaaS (Multi-tenant)',
-    description:
-      'A multi-tenant healthcare SaaS platform with one master DB for client info and separate DB per client. Features wallet system (Stripe/Razorpay), AWS SES, SMTP, Mailgun for email, Twilio for SMS, AWS S3 for file uploads, and RBAC.',
-    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Stripe', 'Razorpay', 'Twilio', 'AWS S3', 'AWS SES', 'Mailgun'],
-    date: '2023–2024',
-    links: [{ name: 'Website', url: 'https://omnivatelehealth.com' }],
-    images: [{ src: '/sunil.jpg', alt: 'Omniva Telehealth SaaS' }],
-  },
-  {
-    title: 'Neem Health',
-    category: 'Healthcare Platform',
-    description:
-      'Full-stack healthcare platform built solo from planning to deployment. Features AI symptom checker chatbot (OpenAI API), Mailgun for emails, Azure Blob Storage for file uploads, and Google/Outlook Calendar integrations for appointments.',
-    techStack: ['Node.js', 'Express.js', 'MongoDB', 'React.js', 'OpenAI API', 'Azure Blob Storage', 'Mailgun', 'Google Calendar'],
-    date: '2024',
-    links: [{ name: 'Website', url: 'https://neemhealth.ai/' }],
-    images: [{ src: '/sunil.jpg', alt: 'Neem Health Platform' }],
-  },
-  {
-    title: 'SubOs',
-    category: 'Subscription Management',
-    description:
-      'Internal subscription management system handling subscriptions for two company products (Artha and Impler). Built a reusable npm package for integration across products. Sole developer — managed from planning to deployment.',
-    techStack: ['NestJS', 'PostgreSQL', 'TypeScript', 'Next.js', 'Stripe'],
-    date: '2024',
-    links: [],
-    images: [{ src: '/sunil.jpg', alt: 'SubOs Subscription System' }],
-  },
-  {
-    title: 'Impler',
-    category: 'Open Source Data Import',
-    description:
-      "Knovator's open-source data import tool built as a monorepo. Managed solo from planning to deployment. Uses Docker for containerization and is publicly available for developers to integrate data import into their products.",
-    techStack: ['Next.js', 'NestJS', 'MongoDB', 'TypeScript', 'Docker'],
-    date: '2024',
-    links: [{ name: 'Website', url: 'https://impler.io/' }],
-    images: [{ src: '/sunil.jpg', alt: 'Impler Data Import Tool' }],
-  },
+  
+  
+  
+ 
 ];
 
 interface ProjectProps {

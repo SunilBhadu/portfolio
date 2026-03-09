@@ -14,20 +14,16 @@ export function Contact() {
         url: 'https://www.linkedin.com/in/sunil-bhadu-xx',
       },
       {
-        name: 'Youtube',
-        url: 'https://www.youtube.com/@toukoum',
-      },
-      {
         name: 'GitHub',
         url: 'https://github.com/SunilBhadu',
       },
       {
         name: 'Discord',
-        url: 'https://discord.com/users/toukoum',
+        url: 'https://discord.com/users/sunilbhadu',
       },
       {
         name: 'X',
-        url: 'https://x.com/toukoumcode',
+        url: 'https://x.com/SunilBhadu2448',
       },
     ],
   };

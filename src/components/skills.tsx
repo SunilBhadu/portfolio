@@ -10,19 +10,13 @@ const Skills = () => {
     {
       category: 'Languages',
       icon: <Code className="h-5 w-5" />,
-      skills: ['JavaScript', 'TypeScript', 'Python', 'C', 'C++','Java'],
+      skills: ['JavaScript', 'TypeScript', 'Python'],
       color: 'bg-blue-50 text-blue-600 border border-blue-200',
-    },
-    {
-      category: 'Frontend',
-      icon: <Code className="h-5 w-5" />,
-      skills: ['Next.js', 'React','HTML', 'CSS', 'Angular',  ],
-      color: 'bg-cyan-50 text-cyan-600 border border-cyan-200',
     },
     {
       category: 'Backend',
       icon: <Cpu className="h-5 w-5" />,
-      skills: ['Node.js', 'Express.js', 'NestJS', 'Django'],
+      skills: ['Node.js', 'NestJS', 'Express.js',],
       color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
     },
     {
@@ -30,6 +24,12 @@ const Skills = () => {
       icon: <Database className="h-5 w-5" />,
       skills: ['MongoDB', 'PostgreSQL'],
       color: 'bg-amber-50 text-amber-600 border border-amber-200',
+    },
+    {
+      category: 'Frontend',
+      icon: <Code className="h-5 w-5" />,
+      skills: ['Next.js', 'React', 'Angular'],
+      color: 'bg-cyan-50 text-cyan-600 border border-cyan-200',
     },
     {
       category: 'Cloud & DevOps',
