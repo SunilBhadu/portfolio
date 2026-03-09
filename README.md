@@ -5,9 +5,9 @@
 **Static portfolios are dead.**
 This is a conversational AI portfolio — instead of making you scroll, it _talks_ to you.
 
-Ask a question, and an AI avatar powered by my background and experience replies instantly.
+Ask a question, and an AI avatar powered by my background, experience, and live GitHub data replies instantly.
 
-> Built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Anthropic Claude API**.
+> Built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Anthropic Claude API**.
 
 ---
 
@@ -25,9 +25,34 @@ Ask a question, and an AI avatar powered by my background and experience replies
 
 - 🎓 B.Tech in IT from Dhole Patil College of Engineering, Pune (SPPU) — **8.4 CGPA**
 - 💼 3+ years of experience building healthcare SaaS, payment systems & open source tools
-- 🛠️ Core stack: **Node.js · Express · NestJS · MongoDB · PostgreSQL · React · Next.js · Angular · TypeScript**
-- 🌐 Projects: [EaseCare](https://easecare.ca) · [WonderMD](https://wondermd.ca) · [Omniva Telehealth](https://omnivatelehealth.com) · [Neem Health](https://neemhealth.ai) · [Impler](https://impler.io)
+- 🛠️ Core stack: **Node.js · NestJS · MongoDB · PostgreSQL · React · Next.js · TypeScript**
+- 🌐 Projects: [Neem Health](https://neemhealth.ai) · [SubOS](https://subos.io) · [Impler](https://impler.io) · [Omniva Telehealth](https://omnivatelehealth.com) · [EaseCare](https://easecare.ca) · [WonderMD](https://wondermd.ca)
 - 📫 [sunilbhadu155@gmail.com](mailto:sunilbhadu155@gmail.com) · [LinkedIn](https://www.linkedin.com/in/sunil-bhadu-xx) · [GitHub](https://github.com/SunilBhadu)
+
+---
+
+## 🚀 Key Features
+
+- 💬 **AI Conversational Interface:** Context-aware chat assistant using Claude Sonnet 4.
+- 🐙 **Live GitHub Integration:** The AI knows about my latest repositories and contributions.
+- 📱 **Apple-Style Cards Carousel:** Interactive project showcase with fluid animations.
+- ✨ **Fluid Cursor & Particles:** Premium UI experience with custom animations.
+- 🌓 **Dark/Light Mode:** Seamless theme switching with persistent preferences.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer           | Technology                                         |
+| --------------- | -------------------------------------------------- |
+| Framework       | Next.js 15.1 (App Router)                          |
+| Language        | TypeScript                                         |
+| Styling         | Tailwind CSS v4                                    |
+| AI              | Anthropic Claude API (`@anthropic-ai/sdk`)         |
+| Animations      | Framer Motion 12, Motion                           |
+| UI Components   | Radix UI, Lucide Icons, Shadcn UI                  |
+| Particles       | TSParticles                                        |
+| Package Manager | pnpm                                               |
 
 ---
 
@@ -35,7 +60,7 @@ Ask a question, and an AI avatar powered by my background and experience replies
 
 ### Prerequisites
 
-- **Node.js** v18 or higher
+- **Node.js** v20 or higher
 - **pnpm** package manager
 - **Anthropic API token** (for AI chat functionality)
 - **GitHub Token** — for GitHub integration
@@ -79,21 +104,6 @@ Ask a question, and an AI avatar powered by my background and experience replies
 
 ---
 
-## 🧰 Tech Stack
-
-| Layer           | Technology                                 |
-| --------------- | ------------------------------------------ |
-| Framework       | Next.js 15 (App Router)                    |
-| Language        | TypeScript                                 |
-| Styling         | Tailwind CSS v4                            |
-| AI              | Anthropic Clause API (`@anthropic-ai/sdk`) |
-| Animations      | Framer Motion                              |
-| UI Components   | Radix UI, Lucide Icons                     |
-| Analytics       | Vercel Analytics                           |
-| Package Manager | pnpm                                       |
-
----
-
 #### 🔖 Tags
 
-`#AIPortfolio` `#FullStackDeveloper` `#DigitalResume` `#NextJS` `#TypeScript` `#Anthropic` `#Claude` `#WebDevelopment` `#SunilBhadu`
+`#AIPortfolio` `#FullStackDeveloper` `#DigitalResume` `#NextJS` `#TypeScript` `#Anthropic` `#Claude` `#WebDevelopment` `#SunilBhadu` `#TailwindCSS4`

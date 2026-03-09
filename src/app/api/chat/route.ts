@@ -10,7 +10,7 @@ export const maxDuration = 30;
 
 // In-memory rate limiter: 20 requests per IP per 24 hours
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 20;
+const RATE_LIMIT = 6;
 const RATE_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 function checkRateLimit(ip: string): boolean {
