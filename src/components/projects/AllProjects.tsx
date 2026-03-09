@@ -3,12 +3,12 @@ import { Card, Carousel } from "@/components/projects/apple-cards-carousel";
 import { data } from "@/components/projects/Data";
 
 const PROJECT_SUMMARIES = [
-  { name: 'EaseCare', desc: 'Healthcare platform with video appointments, Stripe payments, and Agora video calls.' },
-  { name: 'WonderMD', desc: 'Multi-user video call telehealth platform — multiple patients in one appointment.' },
-  { name: 'Omniva Telehealth', desc: 'Multi-tenant healthcare SaaS with wallet system, Stripe/Razorpay, and SMS/email services.' },
-  { name: 'Neem Health', desc: 'Solo-built platform with AI symptom checker (OpenAI API) and calendar integrations.' },
-  { name: 'SubOs', desc: 'Internal subscription management system with reusable npm package and Stripe integration.' },
-  { name: 'Impler', desc: 'Open-source data import tool (monorepo) — managed solo from planning to deployment.' },
+  { name: 'EaseCARE', desc: 'Secure mental health platform with virtual consultations, licensed provider access, and clinical workflows.' },
+  { name: 'WonderMD', desc: 'Pediatric platform featuring referral-based specialist workflows and group video sessions for up to 50 patients.' },
+  { name: 'Omniva Telehealth', desc: 'Comprehensive telemedicine suite with secure video/chat, E-Prescriptions, and Fax API integration.' },
+  { name: 'Neem Health', desc: 'AI-driven coordination platform with a symptom checker chatbot (OpenAI) and automated calendar synchronization.' },
+  { name: 'SubOS', desc: 'Scalable billing infrastructure (Subscription OS) supporting metered usage, tiered pricing, and automated renewals.' },
+  { name: 'Impler', desc: 'Open-source data import platform with an embeddable widget, dynamic Excel validation, and SDK integration.' },
 ];
 
 export default function AllProjects() {

@@ -5,63 +5,73 @@ import { Separator } from '@/components/ui/separator';
 const PROJECT_CONTENT = [
   {
     title: 'Neem Health',
-    category: 'Healthcare Platform',
+    category: 'AI-Powered Healthcare Platform',
     description:
-      'Neem Health is a healthcare coordination platform designed to connect patients, doctors, and medical records in one unified system. The platform enables patients to search for doctors by symptoms, specialty, location, and insurance, and seamlessly book appointments online. It also includes an AI-powered health assistant that guides patients through symptom evaluation, doctor discovery, and appointment scheduling, making healthcare access faster and more organized.',
-    techStack: ['Node.js', 'Express.js', 'MongoDB', 'React.js', 'OpenAI API', 'Azure Blob Storage', 'Mailgun', 'Google Calendar'],
-    date: '2024',
+      'Neem Health is a comprehensive healthcare platform designed to connect patients with providers while centralizing medical records. Featuring an AI-powered symptom checker chatbot for personalized health guidance, it enables doctor discovery, online appointment scheduling, and multi-calendar synchronization (Google/Outlook). Built with real-time notifications (Socket.io) and background processing (Redis/Bull), the platform streamlines healthcare access through a secure, unified coordination system.',
+    techStack: [
+      'React', 'Next.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 
+      'OpenAI', 'LangChain', 'Azure AI Services', 'Redis', 'Bull', 'Socket.io', 
+      'Twilio', 'Mailgun'
+    ],
+    date: '2025-2026',
     links: [{ name: 'Website', url: 'https://neemhealth.ai/' }],
-    images: [{ src: '/sunil.jpg', alt: 'Neem Health Platform' }],
+    images: [{ src: '/neemhealth.jpg', alt: 'Neem Health Healthcare Platform' }],
   },
   {
     title: 'SubOS',
-    category: 'Subscription Management',
+    category: 'Subscription Management Platform',
     description:
-      'Internal subscription management system handling subscriptions for two company products (Artha and Impler). Built a reusable npm package for integration across products. Sole developer — managed from planning to deployment.',
-    techStack: ['NestJS', 'PostgreSQL', 'TypeScript', 'Next.js', 'Stripe'],
-    date: '2024',
+      'SubOS is a scalable subscription management platform (Subscription Operating System) designed to handle complex billing workflows, recurring payments, and usage-based pricing for SaaS applications. It provides a unified system for managing subscription lifecycles (trial, renewal, upgrade, downgrade, cancellation), multi-gateway integration (Stripe and Razorpay), and automated billing cycles. It features tiered and usage-based billing, automated invoice generation, and usage event tracking for metered billing, managed via background jobs with Redis and BullMQ.',
+    techStack: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeORM', 'TypeScript', 'Redis', 'BullMQ', 'Stripe', 'Razorpay', 'Sentry'],
+    date: '2025-2026',
     links: [],
-    images: [{ src: '/sunil.jpg', alt: 'SubOs Subscription System' }],
+    images: [{ src: '/subos.jpg', alt: 'SubOS Subscription Management Platform' }],
   },
    {
     title: 'Impler',
-    category: 'Open Source Data Import',
+    category: 'Open Source Data Import Platform',
     description:
-      "Knovator's open-source data import tool built as a monorepo. Managed solo from planning to deployment. Uses Docker for containerization and is publicly available for developers to integrate data import into their products.",
-    techStack: ['Next.js', 'NestJS', 'MongoDB', 'TypeScript', 'Docker'],
-    date: '2024',
-    links: [{ name: 'Website', url: 'https://impler.io/' }],
-    images: [{ src: '/sunil.jpg', alt: 'Impler Data Import Tool' }],
+      'Impler is an open-source platform providing a ready-to-use data import solution for developers. It features an embeddable widget for seamless CSV/Excel data onboarding, supporting both static and dynamic validation rules, Excel template generation, and built-in data cleaning. Integrated with webhooks to push data to applications, it streamlines customer data onboarding with a developer-friendly SDK. Managed as a monorepo, it uses Docker for containerization and supports community-driven development.',
+    techStack: ['Node.js', 'React.js', 'TypeScript', 'MongoDB', 'NestJS', 'Docker', 'REST APIs'],
+    date: '2025-2026',
+    links: [
+      { name: 'Website', url: 'https://impler.io/' },
+      { name: 'GitHub', url: 'https://github.com/implerhq/impler.io' }
+    ],
+    images: [{ src: '/impler.jpg', alt: 'Impler Data Import Platform' }],
   },
   {
     title: 'Omniva Telehealth',
-    category: 'Healthcare SaaS (Multi-tenant)',
+    category: 'Telemedicine Platform',
     description:
-      'A multi-tenant healthcare SaaS platform with one master DB for client info and separate DB per client. Features wallet system (Stripe/Razorpay), AWS SES, SMTP, Mailgun for email, Twilio for SMS, AWS S3 for file uploads, and RBAC.',
-    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Stripe', 'Razorpay', 'Twilio', 'AWS S3', 'AWS SES', 'Mailgun'],
+      'A full-stack telemedicine platform enabling remote consultations and digital healthcare management. Features secure video/chat via Agora SDK, a Digital Patient Records system, and E-Prescription functionality. Built with a multi-tenant architecture and an integrated Wallet System (Stripe/Razorpay), it also includes Fax integration for document sharing with pharmacies and providers.',
+    techStack: [
+      'Node.js', 'Express.js', 'MongoDB', 'Agora SDK', 'Stripe', 'Razorpay', 
+      'Fax API', 'AWS SES', 'Twilio', 'AWS S3'
+    ],
     date: '2023–2024',
     links: [{ name: 'Website', url: 'https://omnivatelehealth.com' }],
-    images: [{ src: '/sunil.jpg', alt: 'Omniva Telehealth SaaS' }],
+    images: [{ src: '/omniva.jpg', alt: 'Omniva Telemedicine Platform' }],
   },
   {
-    title: 'EaseCare',
-    category: 'Healthcare Platform',
+    title: 'EaseCARE',
+    category: 'Telehealth Mental Health Platform',
     description:
-      'A healthcare platform where patients can book appointments with doctors via video call and offline. Integrated Stripe for payments, AWS SES for emails, and Agora for video calls. Built with role-based access control and JWT authentication.',
-    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Stripe', 'AWS SES', 'Agora', 'JWT'],
-    date: '2023',
+      'A telemedicine platform enabling secure access to licensed physicians, psychiatrists, and therapists. Focused on mental health care, it features virtual appointments, assessments, and treatment plans. Built with a robust scheduling system, role-based access control, and comprehensive admin tools for managing medical staff and patient records.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'React', 'Next.js', 'WebRTC', 'JWT'],
+    date: '2023-2025',
     links: [{ name: 'Website', url: 'https://easecare.ca' }],
-    images: [{ src: '/sunil.jpg', alt: 'EaseCare Healthcare Platform' }],
+    images: [{ src: '/easecare.jpg', alt: 'EaseCARE Healthcare Platform' }],
   },
   {
     title: 'WonderMD',
-    category: 'Healthcare Platform',
+    category: 'Pediatric Telemedicine Platform',
     description:
-      'Healthcare platform with a multi-user video call feature using Agora (multiple patients in one appointment). Focused on backend development to enable scalable telehealth sessions.',
-    techStack: ['Node.js', 'Express.js', 'MongoDB', 'Agora'],
-    date: '2023',
+      'A specialized Canadian telemedicine platform connecting families with pediatricians and specialists. Featuring integrated multi-participant video consultations via Agora SDK and a unique group booking system supporting up to 50 patients, it streamlines complex referral workflows and digital health record management for pediatric care.',
+    techStack: ['Node.js', 'Express.js', 'MongoDB', 'React', 'Next.js', 'Agora RTC SDK'],
+    date: '2023-2025',
     links: [{ name: 'Website', url: 'https://wondermd.ca/' }],
-    images: [{ src: '/sunil.jpg', alt: 'WonderMD Healthcare Platform' }],
+    images: [{ src: '/wondermd.jpg', alt: 'WonderMD Pediatric Platform' }],
   },
   
   

@@ -115,6 +115,7 @@ const Chat = () => {
     "What are your skills? Give me a list of your soft and hard skills.": "getSkills",
     "How can I reach you? What kind of project would make you say \"yes\" immediately?": "getContact",
     "Who are you? I want to know more about you.": "getPresentation",
+    "What are your hobbies and interests outside of work?": "getCrazy",
   };
 
   const LOCAL_TOOL_REPLIES: Record<string, string> = {
@@ -122,12 +123,14 @@ const Chat = () => {
     getSkills: "Here are my skills and areas of expertise:",
     getContact: "Here's how you can reach me:",
     getPresentation: "",
+    getCrazy: "When I'm not coding, I'm usually into this:",
   };
 
   // Detect intent from free-form queries for fallback rendering
   const detectIntent = (query: string): string | null => {
     const q = query.toLowerCase();
-    if (q.includes('project') || q.includes('work') || q.includes('built') || q.includes('portfolio')) return 'getProjects';
+    if (q.includes('fun') || q.includes('hobby') || q.includes('hobbies') || q.includes('interest')) return 'getCrazy';
+    if (q.includes('project') || q.includes('built') || q.includes('portfolio') || (q.includes('work') && !q.includes('outside of work'))) return 'getProjects';
     if (q.includes('skill') || q.includes('tech') || q.includes('stack') || q.includes('know')) return 'getSkills';
     if (q.includes('contact') || q.includes('reach') || q.includes('email') || q.includes('hire')) return 'getContact';
     if (q.includes('who are you') || q.includes('about you') || q.includes('introduce') || q.includes('yourself')) return 'getPresentation';
@@ -140,6 +143,7 @@ const Chat = () => {
     getSkills: "Here are my skills! (AI is temporarily unavailable, but the full list is below 👇)",
     getContact: "Here's how to reach me! (AI is temporarily unavailable, but the contact info is below 👇)",
     getPresentation: "Here's a quick intro about me! (AI is temporarily unavailable 👇)",
+    getCrazy: "Here are my hobbies and interests! (AI is temporarily unavailable 👇)",
     default: "I'm having trouble connecting to the AI right now. You can still explore my portfolio using the **Me**, **Projects**, **Skills**, and **Contact** buttons below — they all work without any limit! 🚀",
     rateLimit: "You've reached the daily message limit (20 messages per day). Feel free to keep exploring using the quick buttons below — **Me**, **Projects**, **Skills**, and **Contact** all work without any limit! 👇",
   };
