@@ -1,5 +1,4 @@
 'use client';
-import { useChat } from '@ai-sdk/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
@@ -18,7 +17,6 @@ import {
 import WelcomeModal from '@/components/welcome-modal';
 import { Info } from 'lucide-react';
 import HelperBoost from './HelperBoost';
-
 
 // ClientOnly component for client-side rendering
 //@ts-ignore
@@ -117,6 +115,13 @@ const MOTION_CONFIG = {
   },
 };
 
+export type Message = {
+  id: string;
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  parts?: any[];
+};
+
 const Chat = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const searchParams = useSearchParams();
@@ -125,51 +130,102 @@ const Chat = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [isTalking, setIsTalking] = useState(false);
 
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    isLoading,
-    stop,
-    setMessages,
-    setInput,
-    reload,
-    addToolResult,
-    append,
-  } = useChat({
-    onResponse: (response) => {
-      if (response) {
-        setLoadingSubmit(false);
-        setIsTalking(true);
-        if (videoRef.current) {
-          videoRef.current.play().catch((error) => {
-            console.error('Failed to play video:', error);
-          });
+  // Replaced useChat hook with standard state
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setInput(e.target.value);
+  };
+
+  const stop = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+  };
+
+  // Dummy functions to keep existing props satisfied
+  const reload = async () => null;
+  const addToolResult = () => {};
+
+  const append = async (message: { role: 'user', content: string }) => {
+    setIsLoading(true);
+    setLoadingSubmit(true);
+    
+    const newUserMessage: Message = {
+      id: Date.now().toString(),
+      role: message.role,
+      content: message.content,
+    };
+    
+    const contextMessages = [...messages, newUserMessage];
+    setMessages(contextMessages);
+
+    abortControllerRef.current = new AbortController();
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: contextMessages }),
+        signal: abortControllerRef.current.signal,
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const resJson = await response.json();
+      
+      if (!resJson.success) {
+        throw new Error(resJson.error || 'API Error');
+      }
+
+      const aiResponseContent = resJson.data;
+
+      setMessages(prev => [
+        ...prev, 
+        {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: aiResponseContent
         }
+      ]);
+
+      // onResponse / success effects
+      setLoadingSubmit(false);
+      setIsTalking(true);
+      if (videoRef.current) {
+        videoRef.current.play().catch((error) => {
+          console.error('Failed to play video:', error);
+        });
       }
-    },
-    onFinish: () => {
+
+      // Simulate talking for a short duration since it's an instant text display now
+      setTimeout(() => {
+        setIsTalking(false);
+        if (videoRef.current) {
+          videoRef.current.pause();
+        }
+      }, Math.min(3000, Math.max(1000, aiResponseContent.length * 20))); // Talk between 1-3 seconds based on length
+
+    } catch (error: any) {
+      if (error.name === 'AbortError') return;
+      
       setLoadingSubmit(false);
       setIsTalking(false);
       if (videoRef.current) {
         videoRef.current.pause();
       }
-    },
-    onError: (error) => {
-      setLoadingSubmit(false);
-      setIsTalking(false);
-      if (videoRef.current) {
-        videoRef.current.pause();
-      }
-      console.error('Chat error:', error.message, error.cause);
+      console.error('Chat error:', error);
       toast.error(`Error: ${error.message}`);
-    },
-    onToolCall: (tool) => {
-      const toolName = tool.toolCall.toolName;
-      console.log('Tool call:', toolName);
-    },
-  });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const { currentAIMessage, latestUserMessage, hasActiveTool } = useMemo(() => {
     const latestAIMessageIndex = messages.findLastIndex(

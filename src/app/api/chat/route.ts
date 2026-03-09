@@ -1,63 +1,48 @@
-import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
+import Anthropic from "@anthropic-ai/sdk";
 import { SYSTEM_PROMPT } from './prompt';
-import { getContact } from './tools/getContact';
-import { getCrazy } from './tools/getCrazy';
-import { getInternship } from './tools/getIntership';
-import { getPresentation } from './tools/getPresentation';
-import { getProjects } from './tools/getProjects';
-import { getResume } from './tools/getResume';
-import { getSkills } from './tools/getSkills';
-import { getSports } from './tools/getSport';
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 export const maxDuration = 30;
 
-// ❌ Pas besoin de l'export ici, Next.js n'aime pas ça
-function errorHandler(error: unknown) {
-  if (error == null) {
-    return 'Unknown error';
-  }
-  if (typeof error === 'string') {
-    return error;
-  }
-  if (error instanceof Error) {
-    return error.message;
-  }
-  return JSON.stringify(error);
-}
-
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
-    console.log('[CHAT-API] Incoming messages:', messages);
+    const body = await req.json();
 
-    messages.unshift(SYSTEM_PROMPT);
+    // The frontend sends { messages: [{ role: 'user', content: '...' }] } 
+    // when using the Vercel AI SDK's useChat hook.
+    // If the user's code sends `message` directly, we handle both:
+    const messages = body.messages || [{ role: 'user', content: body.message || '' }];
 
-    const tools = {
-      getProjects,
-      getPresentation,
-      getResume,
-      getContact,
-      getSkills,
-      getSports,
-      getCrazy,
-      getInternship,
-    };
+    // We get the last user message to pass to the snippet provided by the user.
+    // (If the frontend sends message history, we extract the last sent message)
+    const lastMessage = messages.length > 0 ? messages[messages.length - 1].content : "";
 
-    const result = streamText({
-      model: openai('gpt-4o-mini'),
-      messages,
-      toolCallStreaming: true,
-      tools,
-      maxSteps: 2,
+    const response = await anthropic.messages.create({
+      model: "claude-3-5-sonnet-20241022",
+      max_tokens: 1000,
+      temperature: 0.7,
+      system: SYSTEM_PROMPT, // Anthropic handles system prompt separately
+      messages: [
+        {
+          role: "user",
+          content: lastMessage,
+        },
+      ],
     });
 
-    return result.toDataStreamResponse({
-      getErrorMessage: errorHandler,
+    return Response.json({
+      success: true,
+      data: response.content[0].type === 'text' ? response.content[0].text : '',
     });
-  } catch (err) {
-    console.error('Global error:', err);
-    const errorMessage = errorHandler(err);
-    return new Response(errorMessage, { status: 500 });
+
+  } catch (error: any) {
+    console.error('Global error:', error);
+    return Response.json({
+      success: false,
+      error: error.message,
+    });
   }
 }

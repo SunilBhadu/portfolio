@@ -1,70 +1,99 @@
 ![image](assets/readme-photo.png)
- 
-# World's first AI portfolio 🤖✨  
 
-**Static portfolios are dead.**  
-So I built [toukoum.fr](https://toukoum.fr).
+# Sunil Bhadu — AI Portfolio 🤖✨
 
-Instead of making you scroll endlessly, my portfolio adapts to *you*.  
-Ask a question — my AI avatar replies instantly.
+**Static portfolios are dead.**
+This is a conversational AI portfolio — instead of making you scroll, it _talks_ to you.
 
-## 👇 What can you ask?
+Ask a question, and an AI avatar powered by my background and experience replies instantly.
 
-- 🧠 **Tech recruiter?** Ask about my stack & results  
-- 💻 **Dev?** Dive into my code & mindset  
-- 🧑‍🤝‍🧑 **Friend or family?** See what I’ve been working on  
+> Built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Anthropic Claude API**.
 
 ---
 
-This is not a portfolio.  
-It’s a **conversation tailored to your curiosity**.
+## 👇 What can you ask?
 
-➡️ **Try it now:** [https://toukoum.fr](https://toukoum.fr)  
-*What will you ask?*
+- 🧠 **Tech recruiter?** Ask about my stack, projects & achievements
+- 💻 **Fellow dev?** Dive into my code, architecture decisions & mindset
+- 🧑‍🤝‍🧑 **Just curious?** See what I've been building lately
 
-## 🚀 How to run
+---
 
-Want to run this project locally? Here's what you need:
+## 🙋 About Me
+
+**Sunil Bhadu** — Full Stack Developer from Surat, India.
+
+- 🎓 B.Tech in IT from Dhole Patil College of Engineering, Pune (SPPU) — **8.4 CGPA**
+- 💼 3+ years of experience building healthcare SaaS, payment systems & open source tools
+- 🛠️ Core stack: **Node.js · Express · NestJS · MongoDB · PostgreSQL · React · Next.js · Angular · TypeScript**
+- 🌐 Projects: [EaseCare](https://easecare.ca) · [WonderMD](https://wondermd.ca) · [Omniva Telehealth](https://omnivatelehealth.com) · [Neem Health](https://neemhealth.ai) · [Impler](https://impler.io)
+- 📫 [sunilbhadu155@gmail.com](mailto:sunilbhadu155@gmail.com) · [LinkedIn](https://www.linkedin.com/in/sunil-bhadu-xx) · [GitHub](https://github.com/SunilBhadu)
+
+---
+
+## 🚀 Running Locally
 
 ### Prerequisites
-- **Node.js** (v18 or higher)
+
+- **Node.js** v18 or higher
 - **pnpm** package manager
-- **OpenAI API token** (for AI chat functionality)
-- **GitHub token** (for GitHub integration features)
+- **Anthropic API token** (for AI chat functionality)
+- **GitHub Token** — for GitHub integration
 
 ### Setup
+
 1. **Clone the repository**
+
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/SunilBhadu/portfolio.git
    cd portfolio
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
-3. **Environment variables**
-   Create a `.env` file in the root directory:
+3. **Set up environment variables**
+   Create a `.env.local` file in the root directory:
+
    ```env
-   OPENAI_API_KEY=your_openai_api_key_here
+   ANTHROPIC_API_KEY=your_anthropic_api_key_here
    GITHUB_TOKEN=your_github_token_here
    ```
 
-4. **Run the development server**
+4. **Start the development server**
+
    ```bash
    pnpm dev
    ```
 
-5. **Open your browser**
-   Navigate to `http://localhost:3000`
+5. **Open in browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-### Getting your **tokens**
-- **OpenAI API Key**: Get it from [platform.openai.com](https://platform.openai.com/api-keys)
-- **GitHub Token**: Generate one at [github.com/settings/tokens](https://github.com/settings/personal-access-tokens) with repo access
+### Getting API Keys
 
+- **Anthropic API Key** → [console.anthropic.com](https://console.anthropic.com/)
+- **GitHub Token** → [github.com/settings/tokens](https://github.com/settings/personal-access-tokens) _(repo scope)_
 
+---
+
+## 🧰 Tech Stack
+
+| Layer           | Technology                                 |
+| --------------- | ------------------------------------------ |
+| Framework       | Next.js 15 (App Router)                    |
+| Language        | TypeScript                                 |
+| Styling         | Tailwind CSS v4                            |
+| AI              | Anthropic Clause API (`@anthropic-ai/sdk`) |
+| Animations      | Framer Motion                              |
+| UI Components   | Radix UI, Lucide Icons                     |
+| Analytics       | Vercel Analytics                           |
+| Package Manager | pnpm                                       |
+
+---
 
 #### 🔖 Tags
 
-`#AIPortfolio` `#InnovationInTech` `#DigitalResume` `#JobSearch` `#TechInnovation` `#WebDevelopment` `#FutureTech`
+`#AIPortfolio` `#FullStackDeveloper` `#DigitalResume` `#NextJS` `#TypeScript` `#Anthropic` `#Claude` `#WebDevelopment` `#SunilBhadu`
