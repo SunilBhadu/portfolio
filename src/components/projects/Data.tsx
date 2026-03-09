@@ -15,7 +15,7 @@ const PROJECT_CONTENT = [
     ],
     date: '2025-2026',
     links: [{ name: 'Website', url: 'https://neemhealth.ai/' }],
-    images: [{ src: '/neemhealth.jpg', alt: 'Neem Health Healthcare Platform' }],
+    images: [{ src: '/neemhealth.png', alt: 'Neem Health Healthcare Platform' }],
   },
   {
     title: 'SubOS',
@@ -25,7 +25,7 @@ const PROJECT_CONTENT = [
     techStack: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeORM', 'TypeScript', 'Redis', 'BullMQ', 'Stripe', 'Razorpay', 'Sentry'],
     date: '2025-2026',
     links: [],
-    images: [{ src: '/subos.jpg', alt: 'SubOS Subscription Management Platform' }],
+    images: [{ src: '/subos.png', alt: 'SubOS Subscription Management Platform' }],
   },
    {
     title: 'Impler',
@@ -38,7 +38,7 @@ const PROJECT_CONTENT = [
       { name: 'Website', url: 'https://impler.io/' },
       { name: 'GitHub', url: 'https://github.com/implerhq/impler.io' }
     ],
-    images: [{ src: '/impler.jpg', alt: 'Impler Data Import Platform' }],
+    images: [{ src: '/impler.png', alt: 'Impler Data Import Platform' }],
   },
   {
     title: 'Omniva Telehealth',
@@ -51,7 +51,7 @@ const PROJECT_CONTENT = [
     ],
     date: '2023–2024',
     links: [{ name: 'Website', url: 'https://omnivatelehealth.com' }],
-    images: [{ src: '/omniva.jpg', alt: 'Omniva Telemedicine Platform' }],
+    images: [{ src: '/omniva.png', alt: 'Omniva Telemedicine Platform' }],
   },
   {
     title: 'EaseCARE',
@@ -61,7 +61,7 @@ const PROJECT_CONTENT = [
     techStack: ['Node.js', 'Express.js', 'MongoDB', 'React', 'Next.js', 'WebRTC', 'JWT'],
     date: '2023-2025',
     links: [{ name: 'Website', url: 'https://easecare.ca' }],
-    images: [{ src: '/easecare.jpg', alt: 'EaseCARE Healthcare Platform' }],
+    images: [{ src: '/easecare.png', alt: 'EaseCARE Healthcare Platform' }],
   },
   {
     title: 'WonderMD',
@@ -71,7 +71,7 @@ const PROJECT_CONTENT = [
     techStack: ['Node.js', 'Express.js', 'MongoDB', 'React', 'Next.js', 'Agora RTC SDK'],
     date: '2023-2025',
     links: [{ name: 'Website', url: 'https://wondermd.ca/' }],
-    images: [{ src: '/wondermd.jpg', alt: 'WonderMD Pediatric Platform' }],
+    images: [{ src: '/wondermd.png', alt: 'WonderMD Pediatric Platform' }],
   },
   
   
