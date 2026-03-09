@@ -29,7 +29,4 @@ src/components/skills.tsx → skills section
 - Keep UI modern and animated
 
 ## Pending Improvements
-- Improve hero section
-- Better project cards
 - Mobile optimization
-- Add testimonials section

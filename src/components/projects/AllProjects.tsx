@@ -3,12 +3,12 @@ import { Card, Carousel } from "@/components/projects/apple-cards-carousel";
 import { data } from "@/components/projects/Data";
 
 const PROJECT_SUMMARIES = [
-  { name: 'EaseCARE', desc: 'Secure mental health platform with virtual consultations, licensed provider access, and clinical workflows.' },
-  { name: 'WonderMD', desc: 'Pediatric platform featuring referral-based specialist workflows and group video sessions for up to 50 patients.' },
-  { name: 'Omniva Telehealth', desc: 'Comprehensive telemedicine suite with secure video/chat, E-Prescriptions, and Fax API integration.' },
   { name: 'Neem Health', desc: 'AI-driven coordination platform with a symptom checker chatbot (OpenAI) and automated calendar synchronization.' },
   { name: 'SubOS', desc: 'Scalable billing infrastructure (Subscription OS) supporting metered usage, tiered pricing, and automated renewals.' },
   { name: 'Impler', desc: 'Open-source data import platform with an embeddable widget, dynamic Excel validation, and SDK integration.' },
+  { name: 'Omniva Telehealth', desc: 'Comprehensive telemedicine suite with secure video/chat, E-Prescriptions, and Fax API integration.' },
+  { name: 'EaseCARE', desc: 'Secure mental health platform with virtual consultations, licensed provider access, and clinical workflows.' },
+  { name: 'WonderMD', desc: 'Pediatric platform featuring referral-based specialist workflows and group video sessions for up to 50 patients.' },
 ];
 
 export default function AllProjects() {
