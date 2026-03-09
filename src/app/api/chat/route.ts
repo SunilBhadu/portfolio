@@ -8,7 +8,7 @@ const anthropic = new Anthropic({
 
 export const maxDuration = 30;
 
-// In-memory rate limiter: 20 requests per IP per 24 hours
+// In-memory rate limiter: 6 requests per IP per 24 hours
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 6;
 const RATE_WINDOW_MS = 24 * 60 * 60 * 1000;
@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     const githubSection = formatReposForPrompt(repos);
     const systemPrompt = buildSystemPrompt(githubSection);
 
-    const response = await anthropic.messages.create({
+    const stream = anthropic.messages.stream({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1000,
       temperature: 0.7,
@@ -68,9 +68,27 @@ export async function POST(req: Request) {
       ],
     });
 
-    return Response.json({
-      success: true,
-      data: response.content[0].type === 'text' ? response.content[0].text : '',
+    const readableStream = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of stream) {
+            if (
+              chunk.type === 'content_block_delta' &&
+              chunk.delta.type === 'text_delta'
+            ) {
+              controller.enqueue(new TextEncoder().encode(chunk.delta.text));
+            }
+          }
+        } catch (e) {
+          controller.error(e);
+        } finally {
+          controller.close();
+        }
+      },
+    });
+
+    return new Response(readableStream, {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
     });
 
   } catch (error: any) {

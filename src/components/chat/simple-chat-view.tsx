@@ -72,6 +72,13 @@ export function SimplifiedChatView({
           </div>
         )}
 
+        {/* Loading state before first chunk arrives */}
+        {isLoading && !hasTextContent && !hasTools && (
+          <ChatBubble variant="received">
+            <ChatBubbleMessage isLoading />
+          </ChatBubble>
+        )}
+
         {/* Text content */}
         {hasTextContent && (
           <div className="w-full">

@@ -28,5 +28,4 @@ src/components/skills.tsx → skills section
 - Keep AI chat working
 - Keep UI modern and animated
 
-## Pending Improvements
-- Mobile optimization
+

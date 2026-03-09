@@ -237,30 +237,35 @@ const Chat = () => {
         return;
       }
 
-      const resJson = await response.json();
-
-      if (!resJson.success) {
+      if (!response.ok || !response.body) {
         showFallbackMessage(message.content);
         return;
       }
 
-      const aiResponseContent = resJson.data;
-
+      // Add empty AI message immediately so UI switches from loader to streaming bubble
+      const assistantId = (Date.now() + 1).toString();
       setMessages(prev => [
         ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: aiResponseContent
-        }
+        { id: assistantId, role: 'assistant', content: '' },
       ]);
-
       setLoadingSubmit(false);
       setIsTalking(true);
 
-      setTimeout(() => {
-        setIsTalking(false);
-      }, Math.min(3000, Math.max(1000, aiResponseContent.length * 20)));
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value, { stream: true });
+        setMessages(prev =>
+          prev.map(m =>
+            m.id === assistantId ? { ...m, content: m.content + chunk } : m
+          )
+        );
+      }
+
+      setTimeout(() => setIsTalking(false), 1000);
 
     } catch (error: any) {
       if (error.name === 'AbortError') return;
